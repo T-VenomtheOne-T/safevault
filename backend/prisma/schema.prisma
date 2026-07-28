@@ -1,0 +1,104 @@
+// Gera o cliente TypeScript usado para consultar a base de dados.
+generator client {
+  provider = "prisma-client-js"
+}
+
+// Define MySQL como a base de dados e lê a ligação a partir do ambiente.
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+// Tipos de dados sensíveis que podem existir no cofre.
+enum SecretType {
+  PASSWORD
+  SECURE_NOTE
+  API_KEY
+  SSH_KEY
+  RECOVERY_CODE
+}
+
+// Ações relevantes para segurança que ficam registadas no histórico.
+enum AuditEventType {
+  ACCOUNT_REGISTERED
+  LOGIN_SUCCEEDED
+  LOGIN_FAILED
+  LOGOUT
+  PASSWORD_CHANGED
+  SECRET_CREATED
+  SECRET_UPDATED
+  SECRET_DELETED
+}
+
+// Conta do utilizador; a palavra-passe é guardada apenas como hash Argon2id.
+model User {
+  id            String         @id @default(cuid())
+  email         String         @unique @db.VarChar(254)
+  passwordHash  String         @db.VarChar(255)
+  displayName   String?        @db.VarChar(100)
+  createdAt     DateTime       @default(now())
+  updatedAt     DateTime       @updatedAt
+  refreshTokens RefreshToken[]
+  categories    Category[]
+  secrets       VaultSecret[]
+  auditLogs     AuditLog[]
+}
+
+// Sessão persistente: guarda o hash do token, nunca o valor original do cookie.
+model RefreshToken {
+  id        String   @id @default(cuid())
+  tokenHash String   @unique @db.Char(64)
+  expiresAt DateTime
+  revokedAt DateTime?
+  createdAt DateTime @default(now())
+  userId    String
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([userId])
+}
+
+// Organização pessoal dos segredos de cada utilizador.
+model Category {
+  id        String        @id @default(cuid())
+  name      String        @db.VarChar(100)
+  createdAt DateTime      @default(now())
+  updatedAt DateTime      @updatedAt
+  userId    String
+  user      User          @relation(fields: [userId], references: [id], onDelete: Cascade)
+  secrets   VaultSecret[]
+
+  @@unique([userId, name])
+}
+
+// Conteúdo cifrado do cofre; nenhum campo contém o segredo em texto simples.
+model VaultSecret {
+  id         String     @id @default(cuid())
+  type       SecretType
+  title      String     @db.VarChar(255)
+  ciphertext String     @db.LongText
+  iv         String     @db.VarChar(64)
+  authTag    String     @db.VarChar(64)
+  keyVersion Int        @default(1)
+  createdAt  DateTime   @default(now())
+  updatedAt  DateTime   @updatedAt
+  userId     String
+  categoryId String?
+  user       User       @relation(fields: [userId], references: [id], onDelete: Cascade)
+  category   Category?  @relation(fields: [categoryId], references: [id], onDelete: SetNull)
+
+  @@index([userId, updatedAt])
+  @@index([categoryId])
+}
+
+// Registo de auditoria para investigação e monitorização de eventos de segurança.
+model AuditLog {
+  id        String         @id @default(cuid())
+  eventType AuditEventType
+  ipAddress String?        @db.VarChar(45)
+  userAgent String?        @db.VarChar(512)
+  createdAt DateTime       @default(now())
+  userId    String
+  user      User           @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([userId, createdAt])
+}
