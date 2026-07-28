@@ -1,131 +1,348 @@
 # SafeVault
 
-SafeVault is a security-focused personal vault for sensitive digital information.
+# SafeVault
 
-SafeVault
+> **A Zero-Knowledge Personal Secret Management Platform built with modern cybersecurity practices.**
 
-Mission
-SafeVault is a secure personal vault designed to protect sensitive digital information through modern encryption, authentication, and secure software engineering practices.
+---
 
-Functional Requirements
-A registered user can:
-    • Register an account 
-    • Log in securely 
-    • Log out 
-    • Store encrypted secrets 
-    • Organize secrets into categories 
-    • Edit secrets 
-    • Delete secrets 
-    • Search secrets 
-    • View account activity 
-    • Change password 
-    • Reset password 
-    • Manage profile 
-    • View login history 
-    • Enable MFA (later) 
-    • View security dashboard 
+# Overview
 
-Secret Types
-Initially we'll support:
-    • Password 
-    • Secure Note 
-    • API Key 
-    • SSH Key 
-    • Recovery Code 
-Later versions can add:
-    • Credit Cards 
-    • Bank Accounts 
-    • Certificates 
-    • Cryptocurrency Wallets 
-    • Identity Documents 
+SafeVault is a full-stack web application designed to securely manage sensitive digital information using modern software engineering principles and cybersecurity best practices.
 
-Technology Stack
-I recommend the following modern stack.
-Backend
-    • Node.js (LTS) 
-    • Express.js 
-    • JavaScript (ES2023) 
+Unlike traditional password managers that simply store credentials, SafeVault is designed as a **Zero-Knowledge Personal Secret Management Platform**, where confidentiality, integrity, authentication, authorization, encryption, and auditing are treated as first-class citizens throughout the entire application.
 
-Database
-MySQL 8
+This project serves three primary purposes:
 
-ORM
-Prisma
-Why Prisma instead of raw SQL?
-    • Type-safe queries 
-    • Easy migrations 
-    • Excellent documentation 
-    • Widely used 
-    • Professional-looking portfolio 
+* Professional cybersecurity portfolio project
+* Practical study of secure software engineering
+* Foundation for a future Master's Degree thesis in **Cybersecurity and Systems Administration**
 
-Authentication
-    • JWT Access Tokens 
-    • JWT Refresh Tokens 
+The project is intentionally built following production-level architecture, coding standards, and security practices rather than tutorial-style development.
 
-Password Hashing
-Argon2id
+---
 
-Encryption
-AES-256-GCM
+# Mission
 
-Validation
-Zod
+Design and develop a secure, scalable, and production-ready platform capable of storing and protecting sensitive information while demonstrating modern cybersecurity techniques, cryptographic implementations, and secure software architecture.
 
-Logging
-Pino
+---
 
-Security
-    • Helmet 
-    • CORS 
-    • Express Rate Limit 
-    • Cookie Parser 
-    • dotenv 
+# Project Objectives
 
-API Documentation
-Swagger / OpenAPI
+SafeVault aims to demonstrate knowledge in:
 
-Testing
-Jest
+* Secure Backend Development
+* Authentication & Authorization
+* Applied Cryptography
+* REST API Design
+* Database Security
+* Secure Coding Practices
+* Dockerized Deployments
+* Logging & Monitoring
+* DevSecOps
+* Automated Testing
+* CI/CD
+* Secure System Design
 
-Deployment
-Docker
-GitHub
-GitHub Actions
+---
 
+# Core Principles
 
+The project is built around the following security principles:
 
+* Zero Trust Architecture
+* Defense in Depth
+* Least Privilege
+* Principle of Secure Defaults
+* Encryption by Default
+* Security by Design
+* Privacy by Design
+* Fail Secure
+* Separation of Concerns
 
+---
 
+# Features
 
+## User Management
 
+* User Registration
+* Secure Login
+* Secure Logout
+* Password Change
+* Password Reset
+* Email Verification
+* User Profile Management
+* Account Deletion
+* Session Management
 
+---
 
+## Authentication
 
+* JWT Access Tokens
+* JWT Refresh Tokens
+* Refresh Token Rotation
+* Secure HttpOnly Cookies
+* Argon2id Password Hashing
+* Password Strength Validation
+* Password History
+* Account Lockout Protection
+* Login Attempt Monitoring
+* Session Expiration
 
+---
 
-Folder Structure
+## Multi-Factor Authentication (Future)
 
+* TOTP Authentication
+* Recovery Codes
+* MFA Backup Codes
+
+---
+
+## Secret Vault
+
+Users will be able to securely store:
+
+* Passwords
+* Secure Notes
+* API Keys
+* SSH Keys
+* Recovery Codes
+
+Future support:
+
+* Credit Cards
+* Bank Accounts
+* Identity Documents
+* Certificates
+* Cryptocurrency Wallets
+* Software Licenses
+
+---
+
+## Categories
+
+* Create Categories
+* Edit Categories
+* Delete Categories
+* Organize Secrets
+* Search by Category
+
+---
+
+## Search Engine
+
+* Full Secret Search
+* Category Search
+* Tag Search
+* Instant Filtering
+
+---
+
+## Security Dashboard
+
+The dashboard will display:
+
+* Last Login
+* Active Sessions
+* Login History
+* Failed Login Attempts
+* Security Score
+* MFA Status
+* Encryption Status
+* Password Strength
+* Stored Secret Statistics
+* Device History
+
+---
+
+## Audit Logging
+
+Every important security event will be recorded.
+
+Examples:
+
+* Registration
+* Login
+* Logout
+* Failed Login
+* Password Change
+* Password Reset
+* Secret Creation
+* Secret Modification
+* Secret Deletion
+* Account Lock
+* MFA Enabled
+* Suspicious Activity
+
+---
+
+# Zero-Knowledge Design
+
+SafeVault follows a Zero-Knowledge philosophy whenever possible.
+
+Sensitive vault data is encrypted before storage using authenticated encryption.
+
+The server stores encrypted data but cannot read user secrets without the proper encryption key.
+
+This architecture significantly reduces the impact of potential database breaches.
+
+---
+
+# Cryptography
+
+## Password Hashing
+
+* Argon2id
+
+## Secret Encryption
+
+* AES-256-GCM
+
+## Key Derivation
+
+Future implementation:
+
+* HKDF
+* Per-user encryption keys
+* Key rotation
+* Random IV generation
+* Authenticated encryption
+
+---
+
+# Security Features
+
+SafeVault implements multiple security layers.
+
+## HTTP Security
+
+* Helmet
+* Content Security Policy (CSP)
+* HSTS
+* Secure Headers
+
+## API Security
+
+* CORS
+* Rate Limiting
+* Input Validation
+* Request Sanitization
+
+## Authentication Security
+
+* Secure Cookies
+* JWT
+* Refresh Token Rotation
+* Password Hashing
+* MFA
+* Session Validation
+
+## Attack Mitigation
+
+Protection against:
+
+* SQL Injection
+* XSS
+* CSRF
+* Brute Force Attacks
+* Session Hijacking
+* Credential Stuffing
+* Timing Attacks
+
+---
+
+# Technology Stack
+
+## Backend
+
+* Node.js (LTS)
+* Express.js
+* JavaScript (ES2023)
+
+## Database
+
+* MySQL 8
+
+## ORM
+
+* Prisma
+
+## Authentication
+
+* JWT
+* Refresh Tokens
+
+## Validation
+
+* Zod
+
+## Logging
+
+* Pino
+
+## Cryptography
+
+* Argon2id
+* AES-256-GCM
+
+## Security
+
+* Helmet
+* CORS
+* Express Rate Limit
+* Cookie Parser
+* dotenv
+
+## API Documentation
+
+* Swagger / OpenAPI
+
+## Testing
+
+* Jest
+
+## Containerization
+
+* Docker
+* Docker Compose
+
+## CI/CD
+
+* GitHub Actions
+
+---
+
+# Project Structure
+
+```
 SafeVault/
 
 ├── backend/
 │
 ├── frontend/
 │
-├── docs/
-│
 ├── database/
 │
 ├── docker/
 │
-├── .gitignore
+├── docs/
+│
+├── .github/
 │
 ├── docker-compose.yml
-│
+├── .gitignore
 └── README.md
+```
 
+---
 
-Backend:
+# Backend Structure
 
+```
 backend/
 
 src/
@@ -142,72 +359,166 @@ src/
 ├── utils/
 ├── models/
 ├── logs/
+├── docs/
+├── tests/
 ├── app.js
 └── server.js
+```
 
+---
 
+# Architecture
 
-This separation keeps responsibilities clear:
-    • Controllers handle HTTP requests. 
-    • Services contain business logic. 
-    • Repositories interact with the database. 
-    • Middleware manages authentication, validation, and error handling. 
-    • Security centralizes cryptography and security helpers.
-API Design
-We'll follow REST conventions.
-Authentication:
+SafeVault follows a layered architecture.
+
+```
+Client
+
+↓
+
+Routes
+
+↓
+
+Controllers
+
+↓
+
+Services
+
+↓
+
+Repositories
+
+↓
+
+Database
+```
+
+### Responsibilities
+
+**Routes**
+
+* API endpoints
+
+**Controllers**
+
+* Handle HTTP requests and responses
+
+**Services**
+
+* Business logic
+
+**Repositories**
+
+* Database access
+
+**Validators**
+
+* Input validation
+
+**Security**
+
+* Cryptography
+* Authentication
+* Authorization
+
+**Middleware**
+
+* Authentication
+* Authorization
+* Error Handling
+* Logging
+
+---
+
+# REST API
+
+## Authentication
+
+```
 POST   /api/auth/register
 POST   /api/auth/login
 POST   /api/auth/logout
 POST   /api/auth/refresh
 POST   /api/auth/reset-password
+POST   /api/auth/verify-email
+```
 
+---
 
-Vault:
+## Users
 
+```
+GET    /api/users/profile
+PUT    /api/users/profile
+PUT    /api/users/password
+DELETE /api/users
+```
+
+---
+
+## Vault
+
+```
 GET    /api/vault
 GET    /api/vault/:id
 POST   /api/vault
 PUT    /api/vault/:id
 DELETE /api/vault/:id
+```
 
+---
 
-Categories:
+## Categories
 
+```
 GET
 POST
 PUT
 DELETE
+```
 
-Users:
+---
 
-GET /api/users/profile
-PUT /api/users/profile
-PUT /api/users/password
+## Audit Logs
 
-
-Audit Logs:
-
+```
 GET /api/logs
+```
 
+---
 
+## Dashboard
 
+```
+GET /api/dashboard
+```
 
+---
 
+# Git Workflow
 
-
-
-
-
-
-Git Workflow
-We'll use a simple but professional branching strategy.
-
+```
 main
+
+↓
 
 develop
 
+↓
+
+feature/*
+```
+
+Feature branches include:
+
+```
 feature/authentication
+
+feature/authorization
+
+feature/users
 
 feature/vault
 
@@ -217,50 +528,69 @@ feature/dashboard
 
 feature/frontend
 
+feature/testing
 
-Every feature will be developed and tested independently before being merged into develop and then main.
+feature/docker
+```
 
+Each feature is:
 
-First Milestone
-Before writing the backend, we'll complete these foundational tasks:
-    1. Create the Git repository. 
-    2. Initialize the Node.js project. 
-    3. Install and configure Express. 
-    4. Set up environment variables. 
-    5. Configure Prisma and connect to MySQL. 
-    6. Create the initial folder structure. 
-    7. Add ESLint and Prettier for consistent code quality. 
-    8. Verify the server starts and responds to a health check endpoint. 
-Once these are done, we'll have a clean, production-style backend foundation ready for implementing authentication.
-From this point onward, I'll guide you as if we were building SafeVault for production: every decision will follow modern software engineering and cybersecurity best practices, with explanations of why we're doing something—not just how. This way, you'll finish with both a polished portfolio project and a deeper understanding of the architecture behind it.
+* Developed independently
+* Reviewed
+* Tested
+* Merged into `develop`
+* Released into `main`
 
-Phase	Goal 	Status 
-1	Project Planning & Architecture 	Current 
-2	Development Environment 	Pending 
-3	Backend Foundation 	Pending 
-4	Authentication System 	Pending 
-5	Vault CRUD API 	Pending 
-6	Encryption Layer 	Pending 
-7	Audit Logging 	Pending 
-8	Dashboard API 	Pending 
-9	Frontend 	Pending
-10	Deployment 	Pending 
+---
 
+# Development Roadmap
 
+| Phase | Module                             | Status         |
+| ----- | ---------------------------------- | -------------- |
+| 1     | Project Planning & Architecture    | ✅ Completed    |
+| 2     | Development Environment            | ✅ Completed    |
+| 3     | Backend Foundation                 | ✅ Completed    |
+| 4     | Authentication System              | 🚧 In Progress |
+| 5     | Authorization System               | ⏳ Pending      |
+| 6     | User Management                    | ⏳ Pending      |
+| 7     | Vault CRUD API                     | ⏳ Pending      |
+| 8     | Encryption Layer                   | ⏳ Pending      |
+| 9     | Search Engine                      | ⏳ Pending      |
+| 10    | Categories                         | ⏳ Pending      |
+| 11    | Audit Logging                      | ⏳ Pending      |
+| 12    | Security Dashboard                 | ⏳ Pending      |
+| 13    | Rate Limiting & Abuse Protection   | ⏳ Pending      |
+| 14    | Refresh Token Rotation             | ⏳ Pending      |
+| 15    | Password Reset                     | ⏳ Pending      |
+| 16    | Email Verification                 | ⏳ Pending      |
+| 17    | Multi-Factor Authentication (TOTP) | ⏳ Pending      |
+| 18    | API Documentation                  | ⏳ Pending      |
+| 19    | Automated Testing                  | ⏳ Pending      |
+| 20    | Docker Production Environment      | ⏳ Pending      |
+| 21    | GitHub Actions CI/CD               | ⏳ Pending      |
+| 22    | Frontend Development               | ⏳ Pending      |
+| 23    | Thesis Enhancements                | ⏳ Pending      |
+| 24    | Production Deployment              | ⏳ Pending      |
 
-## Structure
+---
 
-- `backend/` — Express, TypeScript, Prisma, tests, and API configuration.
-- `frontend/` — reserved for the web client.
-- `docs/` — architecture and security decisions.
-- `database/` — local database notes.
-- `docker/` — container build definitions.
+# Long-Term Vision
 
-## Local development
+SafeVault is intended to evolve beyond a portfolio project into a complete secure platform capable of serving as:
 
-1. Install Node.js 20 LTS or later and Docker Desktop.
-2. Start MySQL: `docker compose up -d mysql`
-3. Copy `backend/.env.example` to `backend/.env`.
-4. Run `npm install` from `backend/`.
-5. Create the schema: `npx prisma migrate dev --name init`.
-6. Start the API: `npm run dev`.
+* A professional cybersecurity showcase
+* A production-ready personal vault
+* A Master's Degree research project
+* A reference implementation of secure web application development
+
+---
+
+# License
+
+This project is licensed under the MIT License.
+
+---
+
+# Author
+
+Developed by **Rui Gomes** as a professional portfolio project and future Master's Degree research platform in **Cybersecurity and Systems Administration**.
