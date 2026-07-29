@@ -1,7 +1,5 @@
 # SafeVault
 
-# SafeVault
-
 > **A Zero-Knowledge Personal Secret Management Platform built with modern cybersecurity practices.**
 
 ---
